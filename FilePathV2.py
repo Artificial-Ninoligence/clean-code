@@ -5,13 +5,13 @@ def get_file(file_path):
         return file_path
 
     try:
-        p_location = file_path.rindex('/')
+        slash_index = file_path.rindex('/')
     except:
-        p_location = -1
+        slash_index = -1
     dirName = ''
 
-    if p_location >= 0:
-        dirName = file_path[0: p_location + 1]
+    if slash_index >= 0:
+        dirName = file_path[0: slash_index + 1]
     else:
         dirName = ''
 
@@ -19,12 +19,11 @@ def get_file(file_path):
 
 def getFilenamePart(file_name):
     try:
-        file_name.rindex('/')
+        slash_index = file_name.rindex('/')
     except:
         return file_name
 
-    pos = file_name.rindex('/')
-    base_name = file_name[pos + 1:]
+    base_name = file_name[slash_index + 1:]
     return base_name
 
 def get_extension_part(file_name):
