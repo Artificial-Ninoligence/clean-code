@@ -20,33 +20,32 @@ def get_directory_name(file_path):
     return dir_name
 
 
-def get_file_name(file_name):
+def get_file_name(file_path):
     try:
-        slash_index = file_name.rindex('/')
+        slash_index = file_path.rindex('/')
     except:
-        return file_name
+        return file_path
 
-    base_name = file_name[slash_index + 1:]
-    return base_name
+    file_name = file_path[slash_index + 1:]
 
-def get_extension_part(file_name):
+    return file_name
+
+def get_file_extension(file_path):
     try:
-        occurrences = [m.start() for m in re.finditer('\.', file_name)]
-        return file_name[occurrences[-1] + 1:]
+        last_dot = [m.start() for m in re.finditer('\.', file_path)]
+        file_extension = file_path[last_dot[-1] + 1:]
+        return file_extension
     except:
-        pass
-
-    return ''
-
+        return ''
 
 assert(get_directory_name("log/cups/access_log") == "log/cups/")
 assert(get_directory_name("log/cups/") == "log/cups/")
 assert(get_directory_name("cups/access_log") == "cups/")
 assert(get_directory_name("access_log") == "")
-assert(getFilenamePart("log/cups/access_log") == "access_log")
-assert(getFilenamePart("log/cups/") == "")
-assert(getFilenamePart("cups/access_log") == "access_log")
-assert(getFilenamePart("access_log") == "access_log")
-assert(get_extension_part("log/cups/access_log") == "")
-assert(get_extension_part("base/FileHelper.cpp") == "cpp")
-assert(get_extension_part("base/FileHelper.cpp.bak") == "bak") 
+assert(get_file_name("log/cups/access_log") == "access_log")
+assert(get_file_name("log/cups/") == "")
+assert(get_file_name("cups/access_log") == "access_log")
+assert(get_file_name("access_log") == "access_log")
+assert(get_file_extension("log/cups/access_log") == "")
+assert(get_file_extension("base/FileHelper.cpp") == "cpp")
+assert(get_file_extension("base/FileHelper.cpp.bak") == "bak") 
