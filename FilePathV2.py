@@ -1,7 +1,9 @@
 import re
 
-def get_file(file_path):
+#* Retrieve all directories in the given file path
+def get_directory_name(file_path):
     dir_name = ""
+
     if len(file_path) > 0 and file_path[len(file_path) - 1] == '/':
         return file_path
 
@@ -17,7 +19,8 @@ def get_file(file_path):
 
     return dir_name
 
-def getFilenamePart(file_name):
+
+def get_file_name(file_name):
     try:
         slash_index = file_name.rindex('/')
     except:
@@ -36,10 +39,10 @@ def get_extension_part(file_name):
     return ''
 
 
-assert(get_file("log/cups/access_log") == "log/cups/")
-assert(get_file("log/cups/") == "log/cups/")
-assert(get_file("cups/access_log") == "cups/")
-assert(get_file("access_log") == "")
+assert(get_directory_name("log/cups/access_log") == "log/cups/")
+assert(get_directory_name("log/cups/") == "log/cups/")
+assert(get_directory_name("cups/access_log") == "cups/")
+assert(get_directory_name("access_log") == "")
 assert(getFilenamePart("log/cups/access_log") == "access_log")
 assert(getFilenamePart("log/cups/") == "")
 assert(getFilenamePart("cups/access_log") == "access_log")
