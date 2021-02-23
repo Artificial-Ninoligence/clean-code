@@ -1,6 +1,7 @@
 import re
 
 def get_file(file_path):
+    dir_name = ""
     if len(file_path) > 0 and file_path[len(file_path) - 1] == '/':
         return file_path
 
@@ -8,14 +9,13 @@ def get_file(file_path):
         slash_index = file_path.rindex('/')
     except:
         slash_index = -1
-    dirName = ''
 
     if slash_index >= 0:
-        dirName = file_path[0: slash_index + 1]
+        dir_name = file_path[0: slash_index + 1]
     else:
-        dirName = ''
+        dir_name = ''
 
-    return dirName
+    return dir_name
 
 def getFilenamePart(file_name):
     try:
