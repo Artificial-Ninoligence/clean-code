@@ -1,28 +1,25 @@
 import re
 
-# Get the File path
-# sFile is the file path
 def get_file(file_path):
     if len(file_path) > 0 and file_path[len(file_path) - 1] == '/':
         return file_path
 
     try:
-        p_location = int(file_path.rindex('/'))
+        p_location = file_path.rindex('/')
     except:
         p_location = -1
     dirName = ''
-    # Karl what is this?
+
     if p_location >= 0:
         dirName = file_path[0: p_location + 1]
     else:
-        dirName = '' #sFilename
+        dirName = ''
 
     return dirName
 
-# This function gets the file
 def getFilenamePart(file_name):
     try:
-        int(file_name.rindex('/'))
+        file_name.rindex('/')
     except:
         return file_name
 
@@ -30,8 +27,6 @@ def getFilenamePart(file_name):
     base_name = file_name[pos + 1:]
     return base_name
 
-
-#.png
 def get_extension_part(file_name):
     try:
         occurrences = [m.start() for m in re.finditer('\.', file_name)]
